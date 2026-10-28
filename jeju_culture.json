@@ -1,0 +1,406 @@
+{
+    "region":  "제주특별자치도",
+    "topic":  "제주 문화·역사",
+    "items":  [
+                  {
+                      "name":  "설문대할망",
+                      "category":  "설화·신화",
+                      "description":  "치마폭에 흙을 담아 나르다 한라산과 오름, 섬을 만들었다는 창조 여신 설화",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "삼성혈(삼성신화)",
+                      "category":  "설화·신화",
+                      "description":  "고을나·양을나·부을나 세 신인이 땅에서 솟아나 탐라를 열었다는 건국 신화",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "삼사석(벽랑국 삼공주)",
+                      "category":  "설화·신화",
+                      "description":  "벽랑국 세 공주가 오곡 씨앗과 가축을 가져와 탐라 왕들과 혼인했다는 이야기",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "오백장군 설화",
+                      "category":  "설화·신화",
+                      "description":  "설문대할망의 오백 아들이 죽을 끓이다 변한 바위들이 영실의 오백나한이 되었다는 전설",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "자청비(세경본풀이)",
+                      "category":  "설화·신화",
+                      "description":  "농경의 여신이 된 자청비의 사랑과 모험 이야기",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "차사본풀이(강림)",
+                      "category":  "설화·신화",
+                      "description":  "저승차사 강림이 염라대왕을 잡아온다는 저승 설화",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "영등할망 설화",
+                      "category":  "설화·신화",
+                      "description":  "음력 2월 바다 건너 제주를 찾아와 씨앗을 뿌려 주는 바람의 여신 이야기",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "초공본풀이",
+                      "category":  "설화·신화",
+                      "description":  "삼형제 무조신(巫祖神)의 내력을 담은 무속 신화",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "천지왕본풀이",
+                      "category":  "설화·신화",
+                      "description":  "천지개벽과 해와 달이 둘씩 있던 시절을 다룬 창세 신화",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "김녕 뱀굴 설화(서련 판관)",
+                      "category":  "설화·신화",
+                      "description":  "거대한 뱀에게 처녀를 제물로 바치던 풍습을 없앤 이야기",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "문전본풀이",
+                      "category":  "설화·신화",
+                      "description":  "집안의 신(문전신, 조왕신, 칠성신)의 유래를 담은 가신(家神) 신화",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "김만덕",
+                      "category":  "역사 인물·사건",
+                      "description":  "재산을 풀어 굶주린 백성을 구한 조선 시대 제주 여성 거상",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "이재수의 난",
+                      "category":  "역사 인물·사건",
+                      "description":  "1901년 신축년에 천주교 세력과 관의 수탈에 맞선 항쟁",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "광해군 유배",
+                      "category":  "역사 인물·사건",
+                      "description":  "제주에서 생을 마친 광해군과 관련해 전해지는 이야기",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "제주 4·3 사건",
+                      "category":  "역사 인물·사건",
+                      "description":  "1948년 전후 제주에서 발생한 비극적 사건으로, 오늘날 추모와 진상 규명이 이어지고 있음",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "해녀문화",
+                      "category":  "전통문화·민속",
+                      "description":  "잠수 장비 없이 물질로 해산물을 채취하는 문화 (유네스코 인류무형문화유산)",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "제주 칠머리당 영등굿",
+                      "category":  "전통문화·민속",
+                      "description":  "해녀와 어부의 안전과 풍어를 비는 굿 (유네스코 인류무형문화유산)",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "해녀노젓는소리",
+                      "category":  "전통문화·민속",
+                      "description":  "물질과 배 젓기 때 부르던 제주 민요",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "삼다도(돌·바람·여자)",
+                      "category":  "전통문화·민속",
+                      "description":  "돌, 바람, 여자가 많다는 제주의 별칭",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "돌담 문화(밭담·집담)",
+                      "category":  "전통문화·민속",
+                      "description":  "거센 바람을 막으려 쌓은 검은 현무암 담 (세계중요농업유산)",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "제주 초가",
+                      "category":  "전통문화·민속",
+                      "description":  "새끼줄로 지붕을 촘촘히 엮어 태풍에 대비한 전통 가옥",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "정낭",
+                      "category":  "전통문화·민속",
+                      "description":  "대문 대신 나무 세 개를 걸쳐 집 주인의 부재를 알리던 장치",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "허벅과 물구덕",
+                      "category":  "전통문화·민속",
+                      "description":  "물을 길어 나를 때 쓰던 항아리와 등짐 바구니",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "갈옷(갈중이)",
+                      "category":  "전통문화·민속",
+                      "description":  "감물로 염색해 시원하고 질긴 제주 전통 노동복",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "테우",
+                      "category":  "전통문화·민속",
+                      "description":  "통나무를 엮어 만든 제주의 전통 뗏목배",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "제주어",
+                      "category":  "전통문화·민속",
+                      "description":  "옛말의 흔적이 남아 있는 유네스코 소멸위기 언어",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "신당 문화(본향당)",
+                      "category":  "전통문화·민속",
+                      "description":  "마을을 지키는 신을 모시는 제주 고유의 신앙 공간",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "불턱 문화",
+                      "category":  "전통문화·민속",
+                      "description":  "해녀들이 물질 후 불을 쬐며 쉬던 돌담 공간으로, 해녀 공동체의 중심",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "탐라 목축 문화와 제주마",
+                      "category":  "전통문화·민속",
+                      "description":  "고려 때부터 이어진 말 방목 문화와 체구가 작고 강인한 제주 토종말(천연기념물)",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "한라산",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "제주의 상징이며 유네스코 생물권보전지역·세계지질공원이 있는 산",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "성산일출봉",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "수중 화산 폭발로 만들어진 분화구로 일출 명소 (세계자연유산)",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "거문오름 용암동굴계",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "만장굴·김녕굴 등을 포함한 용암동굴 지대 (세계자연유산)",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "천지연폭포",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "계곡 속에 떨어지는 폭포로 난대림 자생지",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "정방폭포",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "바다로 곧장 떨어지는 폭포",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "주상절리대",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "용암이 식으며 만들어진 육각 기둥 모양 절벽",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "산방산",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "용암이 굳어 만들어진 종 모양 산으로 산방굴사가 있음",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "용머리해안",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "용이 바다로 들어가는 모습을 닮은 퇴적암 해안 절벽",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "우도",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "소가 누운 모습을 닮았다는 섬으로 해안 경관이 뛰어남",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "제주 오름",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "화산 활동으로 생긴 360여 개 기생화산 구릉",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "제주목 관아",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "탐라 시대부터 제주를 다스리던 관청 건물",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "관덕정",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "조선 시대 병사 훈련용으로 지은 제주에서 가장 오래된 건물로 알려진 곳",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "제주 성읍민속마을",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "조선 시대 정의현의 읍성 모습과 전통 가옥을 간직한 마을",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "항파두리 항몽유적",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "삼별초가 몽골에 맞서 싸운 토성 유적",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "환해장성",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "고려 때 외적 침입을 막으려 해안에 쌓은 돌성",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "제주 4·3 평화공원",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "제주 4·3 사건의 희생자를 기리는 추모 공간",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "추사 유배지",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "추사 김정희가 유배 중 \u0027세한도\u0027를 그린 곳",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "조천 연북정·조천진성",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "임금을 그리워하며 북쪽을 바라보았다는 정자와 방어 시설",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "돌하르방",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "마을 입구를 지키는 현무암 석상으로 제주의 상징물",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "협재·금능 해안 및 비양도",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "에메랄드빛 바다와 비양도가 어우러진 서부 해안 경관",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "송악산",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "이중 분화구와 해안 절벽, 일제강점기 갱도 진지 동굴이 함께 남아 있는 곳",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  }
+              ]
+}

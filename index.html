@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>제주 문화·역사 소개</title>
+<style>
+  :root {
+    --bg: #f4f1ea;
+    --card: #ffffff;
+    --ink: #22302c;
+    --muted: #5d6b66;
+    --line: #dcd6c8;
+    --accent: #1f6f6b;
+    --accent-ink: #ffffff;
+    --c1: #7b4fa3; --c2: #b5522f; --c3: #2f7f5a; --c4: #2c6aa0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141a19; --card: #1d2625; --ink: #e8efec; --muted: #9db0aa;
+      --line: #2f3c3a; --accent: #5cc2bb; --accent-ink: #0f1514;
+      --c1: #b794dc; --c2: #e59a78; --c3: #7fd0a5; --c4: #7fb4e0;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px 48px; }
+  header { padding: 48px 0 24px; }
+  header h1 { margin: 0 0 8px; font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.02em; }
+  header p { margin: 0; color: var(--muted); max-width: 40em; }
+  .sticky { position: sticky; top: 0; z-index: 1; background: var(--bg); padding: 12px 0; margin: 12px 0; }
+  .search-row { display: flex; gap: 8px; margin-bottom: 12px; }
+  .search-row .search { flex: 1; margin: 0; }
+  .go {
+    font: inherit; font-weight: 600; cursor: pointer; padding: 0 22px; border: 0; border-radius: 12px;
+    background: #2e9e4f; color: #fff;
+  }
+  .go:hover { background: #278a44; }
+  .go:focus-visible { outline: 2px solid #2e9e4f; outline-offset: 2px; }
+  .search { position: relative; margin-bottom: 12px; }
+  .search input {
+    width: 100%; font: inherit; padding: 12px 44px 12px 16px; border-radius: 12px;
+    border: 1px solid var(--line); background: var(--card); color: var(--ink);
+  }
+  .search input:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: var(--accent); }
+  .search button {
+    position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+    width: 32px; height: 32px; border: 0; border-radius: 50%; cursor: pointer;
+    background: transparent; color: var(--muted); font-size: 1.1rem;
+  }
+  .search button[hidden] { display: none; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+  .empty {
+    grid-column: 1 / -1; text-align: center; padding: 48px 16px;
+    background: var(--card); border: 1px dashed var(--line); border-radius: 12px; color: var(--muted);
+  }
+  .empty strong { display: block; color: var(--ink); font-size: 1.1rem; margin-bottom: 4px; }
+  .filters button {
+    font: inherit; font-size: .95rem; cursor: pointer;
+    padding: 8px 16px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--card); color: var(--ink);
+  }
+  .filters button:hover { border-color: var(--accent); }
+  .filters button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .filters .n { opacity: .7; margin-left: 6px; font-size: .85em; }
+  .status { color: var(--muted); font-size: .9rem; margin: 0 0 16px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 18px; border-top: 4px solid var(--tag, var(--accent));
+  }
+  .tag { display: inline-block; font-size: .78rem; font-weight: 600; color: var(--tag, var(--accent)); margin-bottom: 6px; }
+  .card h2 { margin: 0 0 8px; font-size: 1.15rem; }
+  .card p { margin: 0; color: var(--muted); font-size: .95rem; }
+  footer { margin-top: 40px; color: var(--muted); font-size: .85rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>제주 문화·역사 소개</h1>
+    <p id="intro"></p>
+  </header>
+  <div class="sticky">
+    <form class="search-row" id="searchForm" role="search">
+      <div class="search">
+        <input type="search" id="q" placeholder="이름이나 설명으로 검색 (예: 해녀, 폭포, 4·3)" aria-label="검색" autocomplete="off">
+        <button type="button" id="clear" aria-label="검색어 지우기" hidden>✕</button>
+      </div>
+      <button type="submit" class="go">검색</button>
+    </form>
+    <nav class="filters" id="filters" aria-label="분류 필터"></nav>
+  </div>
+  <p class="status" id="status" aria-live="polite"></p>
+  <main class="grid" id="grid"></main>
+  <footer>데이터: jeju_culture.json</footer>
+</div>
+<script>
+const DATA = {
+    "region":  "제주특별자치도",
+    "topic":  "제주 문화·역사",
+    "items":  [
+                  {
+                      "name":  "설문대할망",
+                      "category":  "설화·신화",
+                      "description":  "치마폭에 흙을 담아 나르다 한라산과 오름, 섬을 만들었다는 창조 여신 설화",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "삼성혈(삼성신화)",
+                      "category":  "설화·신화",
+                      "description":  "고을나·양을나·부을나 세 신인이 땅에서 솟아나 탐라를 열었다는 건국 신화",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "삼사석(벽랑국 삼공주)",
+                      "category":  "설화·신화",
+                      "description":  "벽랑국 세 공주가 오곡 씨앗과 가축을 가져와 탐라 왕들과 혼인했다는 이야기",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "오백장군 설화",
+                      "category":  "설화·신화",
+                      "description":  "설문대할망의 오백 아들이 죽을 끓이다 변한 바위들이 영실의 오백나한이 되었다는 전설",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "자청비(세경본풀이)",
+                      "category":  "설화·신화",
+                      "description":  "농경의 여신이 된 자청비의 사랑과 모험 이야기",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "차사본풀이(강림)",
+                      "category":  "설화·신화",
+                      "description":  "저승차사 강림이 염라대왕을 잡아온다는 저승 설화",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "영등할망 설화",
+                      "category":  "설화·신화",
+                      "description":  "음력 2월 바다 건너 제주를 찾아와 씨앗을 뿌려 주는 바람의 여신 이야기",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "초공본풀이",
+                      "category":  "설화·신화",
+                      "description":  "삼형제 무조신(巫祖神)의 내력을 담은 무속 신화",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "천지왕본풀이",
+                      "category":  "설화·신화",
+                      "description":  "천지개벽과 해와 달이 둘씩 있던 시절을 다룬 창세 신화",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "김녕 뱀굴 설화(서련 판관)",
+                      "category":  "설화·신화",
+                      "description":  "거대한 뱀에게 처녀를 제물로 바치던 풍습을 없앤 이야기",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "문전본풀이",
+                      "category":  "설화·신화",
+                      "description":  "집안의 신(문전신, 조왕신, 칠성신)의 유래를 담은 가신(家神) 신화",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "김만덕",
+                      "category":  "역사 인물·사건",
+                      "description":  "재산을 풀어 굶주린 백성을 구한 조선 시대 제주 여성 거상",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "이재수의 난",
+                      "category":  "역사 인물·사건",
+                      "description":  "1901년 신축년에 천주교 세력과 관의 수탈에 맞선 항쟁",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "광해군 유배",
+                      "category":  "역사 인물·사건",
+                      "description":  "제주에서 생을 마친 광해군과 관련해 전해지는 이야기",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "제주 4·3 사건",
+                      "category":  "역사 인물·사건",
+                      "description":  "1948년 전후 제주에서 발생한 비극적 사건으로, 오늘날 추모와 진상 규명이 이어지고 있음",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "해녀문화",
+                      "category":  "전통문화·민속",
+                      "description":  "잠수 장비 없이 물질로 해산물을 채취하는 문화 (유네스코 인류무형문화유산)",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "제주 칠머리당 영등굿",
+                      "category":  "전통문화·민속",
+                      "description":  "해녀와 어부의 안전과 풍어를 비는 굿 (유네스코 인류무형문화유산)",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "해녀노젓는소리",
+                      "category":  "전통문화·민속",
+                      "description":  "물질과 배 젓기 때 부르던 제주 민요",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "삼다도(돌·바람·여자)",
+                      "category":  "전통문화·민속",
+                      "description":  "돌, 바람, 여자가 많다는 제주의 별칭",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "돌담 문화(밭담·집담)",
+                      "category":  "전통문화·민속",
+                      "description":  "거센 바람을 막으려 쌓은 검은 현무암 담 (세계중요농업유산)",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "제주 초가",
+                      "category":  "전통문화·민속",
+                      "description":  "새끼줄로 지붕을 촘촘히 엮어 태풍에 대비한 전통 가옥",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "정낭",
+                      "category":  "전통문화·민속",
+                      "description":  "대문 대신 나무 세 개를 걸쳐 집 주인의 부재를 알리던 장치",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "허벅과 물구덕",
+                      "category":  "전통문화·민속",
+                      "description":  "물을 길어 나를 때 쓰던 항아리와 등짐 바구니",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "갈옷(갈중이)",
+                      "category":  "전통문화·민속",
+                      "description":  "감물로 염색해 시원하고 질긴 제주 전통 노동복",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "테우",
+                      "category":  "전통문화·민속",
+                      "description":  "통나무를 엮어 만든 제주의 전통 뗏목배",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "제주어",
+                      "category":  "전통문화·민속",
+                      "description":  "옛말의 흔적이 남아 있는 유네스코 소멸위기 언어",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "신당 문화(본향당)",
+                      "category":  "전통문화·민속",
+                      "description":  "마을을 지키는 신을 모시는 제주 고유의 신앙 공간",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "불턱 문화",
+                      "category":  "전통문화·민속",
+                      "description":  "해녀들이 물질 후 불을 쬐며 쉬던 돌담 공간으로, 해녀 공동체의 중심",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "탐라 목축 문화와 제주마",
+                      "category":  "전통문화·민속",
+                      "description":  "고려 때부터 이어진 말 방목 문화와 체구가 작고 강인한 제주 토종말(천연기념물)",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "한라산",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "제주의 상징이며 유네스코 생물권보전지역·세계지질공원이 있는 산",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "성산일출봉",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "수중 화산 폭발로 만들어진 분화구로 일출 명소 (세계자연유산)",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "거문오름 용암동굴계",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "만장굴·김녕굴 등을 포함한 용암동굴 지대 (세계자연유산)",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "천지연폭포",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "계곡 속에 떨어지는 폭포로 난대림 자생지",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "정방폭포",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "바다로 곧장 떨어지는 폭포",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "주상절리대",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "용암이 식으며 만들어진 육각 기둥 모양 절벽",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "산방산",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "용암이 굳어 만들어진 종 모양 산으로 산방굴사가 있음",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "용머리해안",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "용이 바다로 들어가는 모습을 닮은 퇴적암 해안 절벽",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "우도",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "소가 누운 모습을 닮았다는 섬으로 해안 경관이 뛰어남",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "제주 오름",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "화산 활동으로 생긴 360여 개 기생화산 구릉",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "제주목 관아",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "탐라 시대부터 제주를 다스리던 관청 건물",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "관덕정",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "조선 시대 병사 훈련용으로 지은 제주에서 가장 오래된 건물로 알려진 곳",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "제주 성읍민속마을",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "조선 시대 정의현의 읍성 모습과 전통 가옥을 간직한 마을",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "항파두리 항몽유적",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "삼별초가 몽골에 맞서 싸운 토성 유적",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "환해장성",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "고려 때 외적 침입을 막으려 해안에 쌓은 돌성",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "제주 4·3 평화공원",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "제주 4·3 사건의 희생자를 기리는 추모 공간",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "추사 유배지",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "추사 김정희가 유배 중 \u0027세한도\u0027를 그린 곳",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "조천 연북정·조천진성",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "임금을 그리워하며 북쪽을 바라보았다는 정자와 방어 시설",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "돌하르방",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "마을 입구를 지키는 현무암 석상으로 제주의 상징물",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "협재·금능 해안 및 비양도",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "에메랄드빛 바다와 비양도가 어우러진 서부 해안 경관",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  },
+                  {
+                      "name":  "송악산",
+                      "category":  "국가유산·유적·자연유산",
+                      "description":  "이중 분화구와 해안 절벽, 일제강점기 갱도 진지 동굴이 함께 남아 있는 곳",
+                      "score":  0,
+                      "selected":  false,
+                      "source":  ""
+                  }
+              ]
+};
+
+const items = DATA.items;
+const categories = [...new Set(items.map(i => i.category))];
+const colorOf = Object.fromEntries(categories.map((c, i) => [c, `var(--c${(i % 4) + 1})`]));
+const filters = document.getElementById('filters');
+const grid = document.getElementById('grid');
+const status = document.getElementById('status');
+
+document.getElementById('intro').textContent =
+  `${DATA.region}의 ${DATA.topic} ${items.length}가지를 분류별로 살펴보세요.`;
+
+function el(tag, props = {}, text) {
+  const e = document.createElement(tag);
+  Object.assign(e, props);
+  if (text !== undefined) e.textContent = text;
+  return e;
+}
+
+const q = document.getElementById('q');
+const clear = document.getElementById('clear');
+let current = '전체';
+
+function render() {
+  const query = q.value.trim().toLowerCase();
+  const list = items.filter(i =>
+    (current === '전체' || i.category === current) &&
+    (!query || `${i.name} ${i.description} ${i.category}`.toLowerCase().includes(query)));
+
+  if (list.length) {
+    grid.replaceChildren(...list.map(i => {
+      const card = el('article', { className: 'card' });
+      card.style.setProperty('--tag', colorOf[i.category]);
+      card.append(el('span', { className: 'tag' }, i.category), el('h2', {}, i.name), el('p', {}, i.description));
+      return card;
+    }));
+  } else {
+    const box = el('div', { className: 'empty', role: 'alert' });
+    box.append(
+      el('strong', {}, '검색 결과가 없습니다'),
+      el('span', {}, query ? `"${q.value.trim()}"에 해당하는 정보가 없어요. 다른 검색어나 분류를 선택해 보세요.` : '표시할 정보가 없습니다.'));
+    grid.replaceChildren(box);
+  }
+  status.textContent = `${current}${query ? ` · "${q.value.trim()}"` : ''} · ${list.length}개`;
+  clear.hidden = !q.value;
+  filters.querySelectorAll('button').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.cat === current)));
+}
+
+q.addEventListener('input', render);
+document.getElementById('searchForm').addEventListener('submit', e => { e.preventDefault(); render(); });
+clear.addEventListener('click', () => { q.value = ''; q.focus(); render(); });
+
+['전체', ...categories].forEach(cat => {
+  const count = cat === '전체' ? items.length : items.filter(i => i.category === cat).length;
+  const b = el('button', { type: 'button' }, cat);
+  b.dataset.cat = cat;
+  b.append(el('span', { className: 'n' }, count));
+  b.addEventListener('click', () => { current = cat; render(); });
+  filters.append(b);
+});
+
+render();
+</script>
+</body>
+</html>
